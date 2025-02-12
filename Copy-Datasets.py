@@ -102,3 +102,25 @@ def load_new_json_data(all=False):
 
 download_dataset(data_source_uri, dataset_bookstore)
 set_current_catalog(data_catalog)
+
+# COMMAND ----------
+
+# MAGIC %sh
+# MAGIC pwd
+# MAGIC
+
+# COMMAND ----------
+
+
+
+# COMMAND ----------
+
+
+
+# COMMAND ----------
+
+
+
+# COMMAND ----------
+
+

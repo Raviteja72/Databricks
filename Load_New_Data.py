@@ -105,9 +105,7 @@ set_current_catalog(data_catalog)
 
 # COMMAND ----------
 
-# MAGIC %sh
-# MAGIC pwd
-# MAGIC
+load_new_data()
 
 # COMMAND ----------
 

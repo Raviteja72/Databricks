@@ -52,7 +52,7 @@ raw_dir = f"{dataset_bookstore}/orders-raw"
 def load_file(current_index):
     latest_file = f"{str(current_index).zfill(2)}.parquet"
     print(f"Loading {latest_file} file to the bookstore dataset")
-    dbutils.fs.cp(f"{streaming_dir}/{latest_file}", f"{raw_dir}/{latest_file}")
+    dbutils.fs.cp(f"{streaming_dir}/{latest_file}", f"dbfs:/mnt/demo-datasets/bookstore/books-cdc/")
 
     
 def load_new_data(all=False):
@@ -82,7 +82,7 @@ def load_json_file(current_index):
     print(f"Loading {latest_file} orders file to the bookstore dataset")
     dbutils.fs.cp(f"{streaming_orders_dir}/{latest_file}", f"{raw_orders_dir}/{latest_file}")
     print(f"Loading {latest_file} books file to the bookstore dataset")
-    dbutils.fs.cp(f"{streaming_books_dir}/{latest_file}", f"{raw_books_dir}/{latest_file}")
+    dbutils.fs.cp(f"{streaming_books_dir}/{latest_file}", f"dbfs:/mnt/demo-datasets/bookstore/books-cdc/")
 
     
 def load_new_json_data(all=False):
@@ -109,15 +109,23 @@ load_new_data()
 
 # COMMAND ----------
 
-
-
-# COMMAND ----------
-
-
+# MAGIC %fs ls dbfs:/mnt/demo-datasets/bookstore/books-streaming/
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC select * from json.`dbfs:/mnt/demo-datasets/bookstore/books-streaming/04.json` 
+# MAGIC limit 10;
 
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select *  from json.`dbfs:/mnt/demo-datasets/bookstore/books-cdc/01.json`;
+
+# COMMAND ----------
+
+dbutils.fs.cp("dbfs:/mnt/demo-datasets/bookstore/books-streaming/05.json","dbfs:/mnt/demo-datasets/bookstore/books-cdc/05.json")
+print("Copied to books-cdc Directory")
 
 # COMMAND ----------
 
